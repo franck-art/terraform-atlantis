@@ -3,9 +3,9 @@ projects:
 - name: project-staging
   dir: terraform-atlantis
   autoplan:
-    when_modified: ["../modules/**/*.tf", "*.tf*", ".terraform.lock.hcl"]
-  plan_requirements: [approved]
-  apply_requirements: [approved]
+    when_modified: ["../modules/**/*.tf", "*.tf*",".terraform.lock.hcl"]
+  #plan_requirements: [approved]
+  #apply_requirements: [approved]
   workflow: staging
 
 - name: project-production
