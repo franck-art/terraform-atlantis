@@ -30,7 +30,3 @@ workflows:
       - init
       - plan:
           extra_args: ["-var-file", "prod.tfvars"]
-    apply:
-      steps:
-        - apply:
-            extra_args: ["-var-file", "prod.tfvars"]
