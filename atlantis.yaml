@@ -11,8 +11,6 @@ projects:
   autoplan:
     when_modified: ["../modules/**/*.tf", "*.tf*", ".terraform.lock.hcl"]
   workflow: production
-  depends_on:
-    - project-staging
 
 workflows:
   staging:
