@@ -1,0 +1,11 @@
+# repos.yaml
+repos:
+- id: github.com/franck-art/terraform-atlantis
+  repo_config_file: atlantis.yaml
+  # With just allowed_overrides: [workflow], repos can only
+  # choose workflows defined server-side.
+  allowed_overrides: [workflow]
+
+  # By setting allow_custom_workflows to true, we allow repos to also
+  # define their own workflows.
+  allow_custom_workflows: true

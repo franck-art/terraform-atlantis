@@ -4,37 +4,33 @@ projects:
   dir: .
   autoplan:
     when_modified: ["modules/**/*.tf", "*.tf*",".terraform.lock.hcl"]
-    extra_args: ["-var-file", "staging.tfvars"]
-  #plan_requirements: [approved]
-  #apply_requirements: [approved]
-#   workflow: staging
+  workflow: staging
 
 - name: project-production
   dir: .
   autoplan:
     when_modified: ["../modules/**/*.tf", "*.tf*", ".terraform.lock.hcl"]
-    extra_args: ["-var-file", "prod.tfvars"]
-#   plan_requirements: [approved]
-#   apply_requirements: [approved]
-#   workflow: production
+  workflow: production
+  depends_on:
+    - project-staging
 
-# workflows:
-#   staging:
-#     plan:
-#       steps:
-#       - init
-#       - plan:
-#           extra_args: ["-var-file", "staging.tfvars"]
-#     # NOTE: no need to define the apply stage because it will default
-#     # to the normal apply stage.
+workflows:
+  staging:
+    plan:
+      steps:
+      - init
+      - plan:
+          extra_args: ["-var-file", "staging.tfvars"]
+    # NOTE: no need to define the apply stage because it will default
+    # to the normal apply stage.
 
-#   production:
-#     plan:
-#       steps:
-#       - init
-#       - plan:
-#           extra_args: ["-var-file", "prod.tfvars"]
-#     apply:
-#       steps:
-#         - apply:
-#             extra_args: ["-var-file", "prod.tfvars"]
+  production:
+    plan:
+      steps:
+      - init
+      - plan:
+          extra_args: ["-var-file", "prod.tfvars"]
+    apply:
+      steps:
+        - apply:
+            extra_args: ["-var-file", "prod.tfvars"]
