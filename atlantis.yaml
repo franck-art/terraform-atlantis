@@ -4,14 +4,16 @@ projects:
   dir: .
   autoplan:
     when_modified: ["modules/**/*.tf", "*.tf*",".terraform.lock.hcl"]
+    extra_args: ["-var-file", "staging.tfvars"]
   #plan_requirements: [approved]
   #apply_requirements: [approved]
 #   workflow: staging
 
-# - name: project-production
-#   dir: terraform-atlantis
-#   autoplan:
-#     when_modified: ["../modules/**/*.tf", "*.tf*", ".terraform.lock.hcl"]
+- name: project-production
+  dir: .
+  autoplan:
+    when_modified: ["../modules/**/*.tf", "*.tf*", ".terraform.lock.hcl"]
+    extra_args: ["-var-file", "prod.tfvars"]
 #   plan_requirements: [approved]
 #   apply_requirements: [approved]
 #   workflow: production
